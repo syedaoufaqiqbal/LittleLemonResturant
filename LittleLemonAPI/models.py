@@ -19,8 +19,9 @@ class Cart(models.Model):
     quantity=models.SmallIntegerField() 
     unit_price=models.DecimalField(max_digits=6,decimal_places=2)
     class Meta:
-        unique_together=('menuitem','user')
-
+        unique_together=['user','menuitem']
+ 
+ 
 class Order(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)        
     delivery_crew=models.ForeignKey(User,on_delete=models.SET_NULL,related_name='delivery_crew',null=True)
@@ -29,10 +30,10 @@ class Order(models.Model):
     date=models.DateField(db_index=True)
     
 class OrderItem(models.Model):
-    Order=models.ForeignKey(Order,on_delete=models.CASCADE)
-    MenuItem=models.ForeignKey(MenuItem,on_delete=models.CASCADE)
+    order=models.ForeignKey(Order,on_delete=models.CASCADE)
+    menuitem=models.ForeignKey(MenuItem,on_delete=models.CASCADE)
     quantity=models.SmallIntegerField()
     unit_price=models.DecimalField(max_digits=6,decimal_places=2)
     price=models.DecimalField(max_digits=6,decimal_places=2)
     class Meta:
-        unique_together=('order','menuitem')
+        unique_together=['order','menuitem']

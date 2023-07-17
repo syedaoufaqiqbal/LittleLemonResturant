@@ -2,10 +2,10 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView 
-from . import serializers
-from .models import MenuItem 
+
+""" from .models import MenuItem 
 from rest_framework import authentication, permissions
-from rest_framework import generics
+from rest_framework import generics """
 from django.contrib.auth.models import User
 # Create your views here.
 # class-based views
