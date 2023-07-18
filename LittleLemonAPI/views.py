@@ -2,11 +2,11 @@ from django.shortcuts import render,get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView 
-from .models import MenuItem
+from .models import MenuItem,Category,Order,Cart
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes,api_view
 from rest_framework import generics
-from .serializers import MenuItemSerializers
+from .serializers import MenuItemSerializers,CategorySerializers,OrderSerializers,CartSerializers
 """ from .models import MenuItem 
 from rest_framework import authentication, permissions
 from rest_framework import generics """
@@ -61,3 +61,34 @@ class SingleMenuItemView(generics.RetrieveUpdateAPIView):
       queryset = MenuItem.objects.all()
       serializer_class = MenuItemSerializers
       permission_classes = [IsAuthenticated]
+      
+class CategoryView(generics.ListCreateAPIView):
+      queryset = Category.objects.all()
+      serializer_class = CategorySerializers
+      permission_classes = [IsAuthenticated]
+ 
+class SingleCategoryView(generics.RetrieveUpdateAPIView):
+      queryset = Category.objects.all()
+      serializer_class = CategorySerializers
+      permission_classes = [IsAuthenticated]
+class OrderView(generics.ListCreateAPIView):
+      queryset = Order.objects.all()
+      serializer_class = OrderSerializers
+      permission_classes = [IsAuthenticated]
+ 
+class SingleOrderView(generics.RetrieveUpdateAPIView):
+      queryset = Order.objects.all()
+      serializer_class = OrderSerializers
+      permission_classes = [IsAuthenticated]
+      
+      
+class CartView(generics.ListCreateAPIView):
+      queryset = Cart.objects.all()
+      serializer_class = CartSerializers
+      permission_classes = [IsAuthenticated]
+ 
+class SingleCartView(generics.RetrieveUpdateAPIView):
+      queryset = Cart.objects.all()
+      serializer_class = CartSerializers
+      permission_classes = [IsAuthenticated]
+           
