@@ -1,8 +1,13 @@
 from rest_framework import serializers
+from .models import MenuItem
+from decimal import Decimal
 
 class MenuItemSerializers(serializers.ModelSerializer):
-    
-    title=serializers.CharField(max_length=255,db_index=True)
-    price=serializers.DecimalField(max_digits=6,decimal_places=2,db_index=True)
-    featured=serializers.BooleanField(db_index=True)
+    price_after_tax=serializers.SerializerMethodField(method_name='calculate_tax')
+    class Meta:
+        model=MenuItem
+        fields=['title','price','featured','price_after_tax']
+                           
+        def calculate_tax(self,product:MenuItem):
+            return product.price*Decimal(1.1)
   
