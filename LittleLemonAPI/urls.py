@@ -1,13 +1,15 @@
 from django.urls import path
-from .views import MenuItemView ,SingleMenuItemView
+from . import views
  
     
   
 urlpatterns = [
-     path('menu-items/',MenuItemView.as_view()),
-     path('menu-items/<str:title>',SingleMenuItemView.as_view()),
-
-   
+    path('menu-items/',views.MenuItemView.as_view()),
+    path('menu-items/<str:title>',views.SingleMenuItemView.as_view()),
+    path('category/',views.CategoryView.as_view()),
+    path('orders/',views.OrderView.as_view()),
+    path('orders/<str:user>',views.SingleOrderView.as_view()),
+    path('cart/menu-items/<str:user>',views.SingleCartView.as_view()),
 ]
 
 

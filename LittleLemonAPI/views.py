@@ -53,11 +53,11 @@ def single_items(request,item):
     return Response(serialize_menues.data)
                 """
 class MenuItemView(generics.ListCreateAPIView):
- queryset = MenuItem.object.all()
- serializer_class = MenuItemSerializers
- permission_classes = [IsAuthenticated]
+      queryset = MenuItem.objects.all()
+      serializer_class = MenuItemSerializers
+      permission_classes = [IsAuthenticated]
  
 class SingleMenuItemView(generics.RetrieveUpdateAPIView):
-    queryset = MenuItem.object.all()
-    serializer_class = MenuItemSerializers
-    permission_classes = [IsAuthenticated]
+      queryset = MenuItem.objects.all()
+      serializer_class = MenuItemSerializers
+      permission_classes = [IsAuthenticated]
